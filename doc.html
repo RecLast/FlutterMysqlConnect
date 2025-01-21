@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter MySQL Connect - Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        h1, h2, h3 {
+            color: #2196F3;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .info {
+            background: #cce5ff;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flutter MySQL Connect</h1>
+    <p>A secure authentication application using Flutter with MySQL database connection.</p>
+
+    <h2>📑 Contents</h2>
+    <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#database">Database Configuration</a></li>
+        <li><a href="#auth">Authentication Structure</a></li>
+        <li><a href="#theme">Theme Structure</a></li>
+        <li><a href="#lang">Language Management</a></li>
+        <li><a href="#error">Error Handling</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#folder">Folder Structure</a></li>
+    </ul>
+
+    <h2 id="features">✨ Features</h2>
+    <ul>
+        <li>🔐 Secure MySQL connection</li>
+        <li>🔒 Password encryption with BCrypt</li>
+        <li>🌍 TR/EN language support</li>
+        <li>🎨 Customizable theme</li>
+        <li>📱 Responsive design</li>
+        <li>⚡ Performance optimization</li>
+    </ul>
+
+    <h2 id="setup">⚙️ Setup</h2>
+    <h3>Requirements</h3>
+    <pre>
+• Flutter SDK (>=3.2.3)
+• MySQL Server
+• MySQL Workbench (recommended)</pre>
+
+    <h3>Steps</h3>
+    <ol>
+        <li>Clone the project:
+            <pre>git clone https://github.com/RecLast/FlutterMysqlConnect.git</pre>
+        </li>
+        <li>Install dependencies:
+            <pre>flutter pub get</pre>
+        </li>
+    </ol>
+
+    <h2 id="database">💾 Database Configuration</h2>
+    <h3>1. Create Database</h3>
+    <pre>CREATE DATABASE flutter_mysql_connect;</pre>
+
+    <h3>2. Table Structure</h3>
+    <pre>
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</pre>
+
+    <h3>3. Secure Connection Configuration</h3>
+    <p>To configure MySQL connection information securely:</p>
+    <ol>
+        <li>Edit <code>lib/core/utils/config_generator.dart</code> file:
+        <pre>
+final config = {
+    'host': 'localhost',
+    'port': '3306',
+    'user': 'your_username',
+    'password': 'your_password',
+    'db': 'your_database'
+};</pre>
+        </li>
+        <li>Run the config generator:
+        <pre>dart run lib/core/utils/config_generator.dart</pre>
+        </li>
+        <li>Generated encrypted config file: <code>assets/config/db_config.enc</code></li>
+    </ol>
+
+    <div class="info">
+        <strong>🔐 Security:</strong> Connection information is protected with XOR encryption and SHA-256.
+    </div>
+
+    <h2 id="auth">🔑 Authentication Structure</h2>
+    <p>The authentication system is configured under <code>features/auth</code> with MVVM architecture:</p>
+    <pre>
+features/auth/
+├── model/
+│   └── user_model.dart          # User data model
+├── view/
+│   ├── sign_view.dart           # Login/Register screen
+│   └── splash_view.dart         # Splash screen
+└── viewmodel/
+    └── auth_view_model.dart     # Authentication business logic</pre>
+
+    <h3>Authentication Flow</h3>
+    <ol>
+        <li>Session check in splash screen</li>
+        <li>Login/Register form validation</li>
+        <li>Password hashing with BCrypt</li>
+        <li>JWT token management</li>
+    </ol>
+
+    <h2 id="theme">🎨 Theme Structure</h2>
+    <p>Theme management is centrally configured under <code>core/theme</code>:</p>
+    <pre>
+core/theme/
+├── app_colors.dart      # Color palettes
+├── app_text_styles.dart # Typography styles
+└── app_theme.dart       # Theme configuration</pre>
+
+    <div class="info">
+        <strong>💡 Customization:</strong> All colors and styles can be managed from a single point.
+    </div>
+
+    <h3>Theme Usage</h3>
+    <pre>
+// Color usage
+color: AppColors.darkBlue['primary']
+
+// Text style usage
+style: AppTextStyles.ubuntuBold.copyWith(
+    fontSize: 24,
+    color: Colors.white,
+)</pre>
+
+    <h2 id="lang">🌍 Language Management</h2>
+    <p>Multi-language support is configured under <code>core/init/lang</code>:</p>
+    <pre>
+core/init/lang/
+├── locale_keys.dart    # Language keys
+├── locale_manager.dart # Language manager
+└── translations/       # Language files
+    ├── tr.json
+    └── en.json</pre>
+
+    <h3>Language Usage</h3>
+    <pre>
+// Change language
+LocaleManager.instance.setLocale(const Locale('en', 'US'));
+
+// Text translation
+Text(LocaleKeys.welcome.tr())</pre>
+
+    <h2 id="error">⚠️ Error Handling</h2>
+    <p>Central error management is configured under <code>core/base</code>:</p>
+    <pre>
+core/base/
+├── error/
+│   ├── base_error.dart      # Base error class
+│   ├── network_error.dart   # Network errors
+│   └── database_error.dart  # Database errors
+└── result/
+    └── result_model.dart    # Result model</pre>
+
+    <h3>Error Handling Usage</h3>
+    <pre>
+try {
+  await operation();
+} on NetworkError catch (e) {
+  showErrorDialog(e.message);
+} on DatabaseError catch (e) {
+  logError(e);
+  showErrorSnackbar(e.message);
+}</pre>
+
+    <div class="warning">
+        <strong>🔍 Error Tracking:</strong> All errors are centrally logged and appropriate messages are shown to the user.
+    </div>
+
+    <h2 id="security">🔒 Security</h2>
+    <h3>Encryption</h3>
+    <ul>
+        <li>Secure password hashing with BCrypt</li>
+        <li>Sensitive data encryption with AES-256</li>
+        <li>Secure connection with SSL/TLS</li>
+    </ul>
+
+    <h3>SQL Injection Protection</h3>
+    <pre>
+// Unsafe Usage ❌
+"SELECT * FROM users WHERE username = '$username'"
+
+// Safe Usage ✅
+"SELECT * FROM users WHERE username = ?"</pre>
+
+    <h2 id="architecture">🏗️ Architecture</h2>
+    <p>The project is developed using MVVM (Model-View-ViewModel) architecture:</p>
+    <ul>
+        <li><strong>Model:</strong> Data structures and database operations</li>
+        <li><strong>View:</strong> UI components</li>
+        <li><strong>ViewModel:</strong> Business logic and state management</li>
+    </ul>
+
+    <h2 id="folder">📁 Folder Structure</h2>
+    <pre>
+lib/
+├── core/
+│   ├── init/
+│   │   ├── database/      # MySQL connection management
+│   │   ├── encryption/    # Encryption services
+│   │   └── lang/         # Language management
+│   ├── services/         # General services
+│   ├── theme/           # Theme configuration
+│   └── utils/           # Helper utilities
+└── features/
+    ├── auth/            # Authentication
+    │   ├── model/
+    │   ├── view/
+    │   └── viewmodel/
+    └── home/            # Home page
+        ├── model/
+        ├── view/
+        └── viewmodel/</pre>
+
+    <div class="info">
+        <strong>💡 Tip:</strong> Visit our 
+        <a href="https://github.com/RecLast/FlutterMysqlConnect/wiki">Wiki page</a> for detailed code examples and API documentation.
+    </div>
+
+    <h2>📞 Contact</h2>
+    <p>
+        For questions and suggestions:
+        <a href="mailto:by_reclast@hotmail.com">by_reclast@hotmail.com</a>
+    </p>
+
+    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+        <p>© 2025 Flutter MySQL Connect. Developed by <a href="www.umiteski.com.tr">Ümit Eski</a>. Licensed under MIT License.</p>
+    </footer>
+</body>
+</html> 
