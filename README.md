@@ -8,13 +8,13 @@ connection.
 -   [Features](#features)
 -   [Setup](#setup)
 -   [Database Configuration](#database-configuration)
--   [Authentication Structure](#-authentication-structure)
--   [Theme Structure](#-theme-structure)
--   [Language Management](#-language-management)
--   [Error Handling](#-error-handling)
--   [Security](#-security)
--   [Architecture](#-architecture)
--   [Folder Structure](#-folder-structure)
+-   [Authentication Structure](#authentication-structure)
+-   [Theme Structure](#theme-structure)
+-   [Language Management](#language-management)
+-   [Error Handling](#error-handling)
+-   [Security](#security)
+-   [Architecture](#architecture)
+-   [Folder Structure](#folder-structure)
 
 ## ✨Features
 
