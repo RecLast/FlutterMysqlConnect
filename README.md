@@ -1,106 +1,102 @@
-- Flutter MySQL Connect - Documentation -
+# Flutter MySQL Connect
 
-Flutter MySQL Connect
-=====================
+A secure authentication application using Flutter with MySQL database
+connection.
 
-A secure authentication application using Flutter with MySQL database connection.
+## 📑 Contents
 
-📑 Contents
------------
+-   [Features](#features)
+-   [Setup](#setup)
+-   [Database Configuration](#database)
+-   [Authentication Structure](#auth)
+-   [Theme Structure](#theme)
+-   [Language Management](#lang)
+-   [Error Handling](#error)
+-   [Security](#security)
+-   [Architecture](#architecture)
+-   [Folder Structure](#folder)
 
-* [Features](#features)
-* [Setup](#setup)
-* [Database Configuration](#database)
-* [Authentication Structure](#auth)
-* [Theme Structure](#theme)
-* [Language Management](#lang)
-* [Error Handling](#error)
-* [Security](#security)
-* [Architecture](#architecture)
-* [Folder Structure](#folder)
+## ✨ Features
 
-✨ Features
-----------
+-   🔐 Secure MySQL connection
+-   🔒 Password encryption with BCrypt
+-   🌍 TR/EN language support
+-   🎨 Customizable theme
+-   📱 Responsive design
+-   ⚡ Performance optimization
 
-* 🔐 Secure MySQL connection
-* 🔒 Password encryption with BCrypt
-* 🌍 TR/EN language support
-* 🎨 Customizable theme
-* 📱 Responsive design
-* ⚡ Performance optimization
-
-⚙️ Setup
---------
+## ⚙️ Setup
 
 ### Requirements
 
-• Flutter SDK (>=3.2.3)
-• MySQL Server
-• MySQL Workbench (recommended)
+    • Flutter SDK (>=3.2.3)
+    • MySQL Server
+    • MySQL Workbench (recommended)
 
 ### Steps
 
 1.  Clone the project:
-    
-    git clone https://github.com/RecLast/FlutterMysqlConnect.git
-    
+
+        git clone https://github.com/RecLast/FlutterMysqlConnect.git
+
 2.  Install dependencies:
-    
-    flutter pub get
-    
 
-💾 Database Configuration
--------------------------
+        flutter pub get
 
-### 1\. Create Database
+## 💾 Database Configuration {#database}
 
-CREATE DATABASE flutter\_mysql\_connect;
+### 1. Create Database
 
-### 2\. Table Structure
+    CREATE DATABASE flutter_mysql_connect;
 
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    created\_at TIMESTAMP DEFAULT CURRENT\_TIMESTAMP
-);
+### 2. Table Structure
 
-### 3\. Secure Connection Configuration
+    CREATE TABLE users (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        username VARCHAR(50) UNIQUE NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+### 3. Secure Connection Configuration
 
 To configure MySQL connection information securely:
 
 1.  Edit `lib/core/utils/config_generator.dart` file:
-    
-    final config = {
-        'host': 'localhost',
-        'port': '3306',
-        'user': 'your_username',
-        'password': 'your_password',
-        'db': 'your_database'
-    };
-    
+
+        final config = {
+            'host': 'localhost',
+            'port': '3306',
+            'user': 'your_username',
+            'password': 'your_password',
+            'db': 'your_database'
+        };
+
 2.  Run the config generator:
-    
-    dart run lib/core/utils/config_generator.dart
-    
+
+        dart run lib/core/utils/config_generator.dart
+
 3.  Generated encrypted config file: `assets/config/db_config.enc`
 
-**🔐 Security:** Connection information is protected with XOR encryption and SHA-256.
+::: info
+**🔐 Security:** Connection information is protected with XOR encryption
+and SHA-256.
+:::
 
-🔑 Authentication Structure
----------------------------
+## 🔑 Authentication Structure {#auth}
 
-The authentication system is configured under `features/auth` with MVVM architecture:
+The authentication system is configured under `features/auth` with MVVM
+architecture:
 
-features/auth/
-├── model/
-│   └── user_model.dart          # User data model
-├── view/
-│   ├── sign_view.dart           # Login/Register screen
-│   └── splash_view.dart         # Splash screen
-└── viewmodel/
-    └── auth\_view\_model.dart     # Authentication business logic
+    features/auth/
+    ├── model/
+    │   └── user_model.dart          # User data model
+    ├── view/
+    │   ├── sign_view.dart           # Login/Register screen
+    │   └── splash_view.dart         # Splash screen
+    └── viewmodel/
+        └── auth_view_model.dart     # Authentication business logic
 
 ### Authentication Flow
 
@@ -109,128 +105,132 @@ features/auth/
 3.  Password hashing with BCrypt
 4.  JWT token management
 
-🎨 Theme Structure
-------------------
+## 🎨 Theme Structure {#theme}
 
 Theme management is centrally configured under `core/theme`:
 
-core/theme/
-├── app_colors.dart      # Color palettes
-├── app\_text\_styles.dart # Typography styles
-└── app_theme.dart       # Theme configuration
+    core/theme/
+    ├── app_colors.dart      # Color palettes
+    ├── app_text_styles.dart # Typography styles
+    └── app_theme.dart       # Theme configuration
 
-**💡 Customization:** All colors and styles can be managed from a single point.
+::: info
+**💡 Customization:** All colors and styles can be managed from a single
+point.
+:::
 
 ### Theme Usage
 
-// Color usage
-color: AppColors.darkBlue\['primary'\]
+    // Color usage
+    color: AppColors.darkBlue['primary']
 
-// Text style usage
-style: AppTextStyles.ubuntuBold.copyWith(
-    fontSize: 24,
-    color: Colors.white,
-)
+    // Text style usage
+    style: AppTextStyles.ubuntuBold.copyWith(
+        fontSize: 24,
+        color: Colors.white,
+    )
 
-🌍 Language Management
-----------------------
+## 🌍 Language Management {#lang}
 
 Multi-language support is configured under `core/init/lang`:
 
-core/init/lang/
-├── locale_keys.dart    # Language keys
-├── locale_manager.dart # Language manager
-└── translations/       # Language files
-    ├── tr.json
-    └── en.json
+    core/init/lang/
+    ├── locale_keys.dart    # Language keys
+    ├── locale_manager.dart # Language manager
+    └── translations/       # Language files
+        ├── tr.json
+        └── en.json
 
 ### Language Usage
 
-// Change language
-LocaleManager.instance.setLocale(const Locale('en', 'US'));
+    // Change language
+    LocaleManager.instance.setLocale(const Locale('en', 'US'));
 
-// Text translation
-Text(LocaleKeys.welcome.tr())
+    // Text translation
+    Text(LocaleKeys.welcome.tr())
 
-⚠️ Error Handling
------------------
+## ⚠️ Error Handling {#error}
 
 Central error management is configured under `core/base`:
 
-core/base/
-├── error/
-│   ├── base_error.dart      # Base error class
-│   ├── network_error.dart   # Network errors
-│   └── database_error.dart  # Database errors
-└── result/
-    └── result_model.dart    # Result model
+    core/base/
+    ├── error/
+    │   ├── base_error.dart      # Base error class
+    │   ├── network_error.dart   # Network errors
+    │   └── database_error.dart  # Database errors
+    └── result/
+        └── result_model.dart    # Result model
 
 ### Error Handling Usage
 
-try {
-  await operation();
-} on NetworkError catch (e) {
-  showErrorDialog(e.message);
-} on DatabaseError catch (e) {
-  logError(e);
-  showErrorSnackbar(e.message);
-}
+    try {
+      await operation();
+    } on NetworkError catch (e) {
+      showErrorDialog(e.message);
+    } on DatabaseError catch (e) {
+      logError(e);
+      showErrorSnackbar(e.message);
+    }
 
-**🔍 Error Tracking:** All errors are centrally logged and appropriate messages are shown to the user.
+::: warning
+**🔍 Error Tracking:** All errors are centrally logged and appropriate
+messages are shown to the user.
+:::
 
-🔒 Security
------------
+## 🔒 Security
 
 ### Encryption
 
-* Secure password hashing with BCrypt
-* Sensitive data encryption with AES-256
-* Secure connection with SSL/TLS
+-   Secure password hashing with BCrypt
+-   Sensitive data encryption with AES-256
+-   Secure connection with SSL/TLS
 
 ### SQL Injection Protection
 
-// Unsafe Usage ❌
-"SELECT * FROM users WHERE username = '$username'"
+    // Unsafe Usage ❌
+    "SELECT * FROM users WHERE username = '$username'"
 
-// Safe Usage ✅
-"SELECT * FROM users WHERE username = ?"
+    // Safe Usage ✅
+    "SELECT * FROM users WHERE username = ?"
 
-🏗️ Architecture
-----------------
+## 🏗️ Architecture
 
 The project is developed using MVVM (Model-View-ViewModel) architecture:
 
-* **Model:** Data structures and database operations
-* **View:** UI components
-* **ViewModel:** Business logic and state management
+-   **Model:** Data structures and database operations
+-   **View:** UI components
+-   **ViewModel:** Business logic and state management
 
-📁 Folder Structure
--------------------
+## 📁 Folder Structure {#folder}
 
-lib/
-├── core/
-│   ├── init/
-│   │   ├── database/      # MySQL connection management
-│   │   ├── encryption/    # Encryption services
-│   │   └── lang/         # Language management
-│   ├── services/         # General services
-│   ├── theme/           # Theme configuration
-│   └── utils/           # Helper utilities
-└── features/
-    ├── auth/            # Authentication
-    │   ├── model/
-    │   ├── view/
-    │   └── viewmodel/
-    └── home/            # Home page
-        ├── model/
-        ├── view/
-        └── viewmodel/
+    lib/
+    ├── core/
+    │   ├── init/
+    │   │   ├── database/      # MySQL connection management
+    │   │   ├── encryption/    # Encryption services
+    │   │   └── lang/         # Language management
+    │   ├── services/         # General services
+    │   ├── theme/           # Theme configuration
+    │   └── utils/           # Helper utilities
+    └── features/
+        ├── auth/            # Authentication
+        │   ├── model/
+        │   ├── view/
+        │   └── viewmodel/
+        └── home/            # Home page
+            ├── model/
+            ├── view/
+            └── viewmodel/
 
-**💡 Tip:** Visit our [Wiki page](https://github.com/RecLast/FlutterMysqlConnect/wiki) for detailed code examples and API documentation.
+::: info
+**💡 Tip:** Visit our [Wiki
+page](https://github.com/RecLast/FlutterMysqlConnect/wiki) for detailed
+code examples and API documentation.
+:::
 
-📞 Contact
-----------
+## 📞 Contact
 
-For questions and suggestions: [by_reclast@hotmail.com](mailto:by_reclast@hotmail.com)
+For questions and suggestions: <by_reclast@hotmail.com>
 
-© 2025 Flutter MySQL Connect. Developed by [Ümit Eski](www.umiteski.com.tr). Licensed under MIT License.
+© 2025 Flutter MySQL Connect. Developed by [Ümit
+Eski](www.umiteski.com.tr). Licensed under MIT License.
