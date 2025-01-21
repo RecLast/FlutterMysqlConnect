@@ -18,6 +18,8 @@ connection.
 
 ## ✨Features
 
+-   🔐 Authentication (Login/Register)
+-   🔐 Login Control/NetworkControl/DatabaseControl (Splash Screen)
 -   🔐 Secure MySQL connection
 -   🔒 Password encryption with BCrypt
 -   🌍 TR/EN language support
