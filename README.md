@@ -18,9 +18,10 @@ connection.
 
 ## ✨Features
 
--   🔐 Authentication (Login/Register)
--   🔐 Login Control/NetworkControl/DatabaseControl (Splash Screen)
 -   🔐 Secure MySQL connection
+-   🔐 Encryption MYSQL Information
+-   🔐 Authentication (Login/Register)
+-   🔐 NetworkControl/DatabaseControl/Login Control (Splash Screen)
 -   🔒 Password encryption with BCrypt
 -   🌍 TR/EN language support
 -   🎨 Customizable theme
