@@ -5,18 +5,18 @@ connection.
 
 ## 📑 Contents
 
--   [Features](#-features)
--   [Setup](#-setup)
--   [Database Configuration](#-database)
--   [Authentication Structure](#-auth)
--   [Theme Structure](#-theme)
--   [Language Management](#-lang)
--   [Error Handling](#-error)
+-   [Features](#features)
+-   [Setup](#setup)
+-   [Database Configuration](#database-configuration)
+-   [Authentication Structure](#-authentication-structure)
+-   [Theme Structure](#-theme-structure)
+-   [Language Management](#-language-management)
+-   [Error Handling](#-error-handling)
 -   [Security](#-security)
 -   [Architecture](#-architecture)
--   [Folder Structure](#-folder)
+-   [Folder Structure](#-folder-structure)
 
-## ✨ Features
+## ✨Features
 
 -   🔐 Secure MySQL connection
 -   🔒 Password encryption with BCrypt
@@ -25,7 +25,7 @@ connection.
 -   📱 Responsive design
 -   ⚡ Performance optimization
 
-## ⚙️ Setup
+## ⚙️Setup
 
 ### Requirements
 
@@ -43,7 +43,7 @@ connection.
 
         flutter pub get
 
-## 💾 Database Configuration {#database}
+## 💾Database Configuration
 
 ### 1. Create Database
 
@@ -84,7 +84,7 @@ To configure MySQL connection information securely:
 and SHA-256.
 :::
 
-## 🔑 Authentication Structure {#auth}
+## 🔑Authentication Structure
 
 The authentication system is configured under `features/auth` with MVVM
 architecture:
@@ -105,7 +105,7 @@ architecture:
 3.  Password hashing with BCrypt
 4.  JWT token management
 
-## 🎨 Theme Structure {#theme}
+## 🎨Theme Structure
 
 Theme management is centrally configured under `core/theme`:
 
@@ -130,7 +130,7 @@ point.
         color: Colors.white,
     )
 
-## 🌍 Language Management {#lang}
+## 🌍Language Management
 
 Multi-language support is configured under `core/init/lang`:
 
@@ -149,7 +149,7 @@ Multi-language support is configured under `core/init/lang`:
     // Text translation
     Text(LocaleKeys.welcome.tr())
 
-## ⚠️ Error Handling {#error}
+## ⚠️Error Handling
 
 Central error management is configured under `core/base`:
 
@@ -177,7 +177,7 @@ Central error management is configured under `core/base`:
 messages are shown to the user.
 :::
 
-## 🔒 Security
+## 🔒Security
 
 ### Encryption
 
@@ -201,7 +201,7 @@ The project is developed using MVVM (Model-View-ViewModel) architecture:
 -   **View:** UI components
 -   **ViewModel:** Business logic and state management
 
-## 📁 Folder Structure {#folder}
+## 📁Folder Structure
 
     lib/
     ├── core/
