@@ -3,6 +3,8 @@
 A secure authentication application using Flutter with MySQL database
 connection.
 
+![Flutter MySQL Connect](/assets/images/flutter_mysql_connect.png)
+
 ## 📑 Contents
 
 -   [Features](#features)
