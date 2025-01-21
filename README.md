@@ -5,18 +5,18 @@ connection.
 
 ## 📑 Contents
 
--   [Features](#features)
--   [Setup](#setup)
--   [Database Configuration](#database)
--   [Authentication Structure](#auth)
--   [Theme Structure](#theme)
--   [Language Management](#lang)
--   [Error Handling](#error)
--   [Security](#security)
--   [Architecture](#architecture)
--   [Folder Structure](#folder)
+-   [Features](#-features)
+-   [Setup](#-setup)
+-   [Database Configuration](#-database)
+-   [Authentication Structure](#-auth)
+-   [Theme Structure](#-theme)
+-   [Language Management](#-lang)
+-   [Error Handling](#-error)
+-   [Security](#-security)
+-   [Architecture](#-architecture)
+-   [Folder Structure](#-folder)
 
-## ✨Features
+## ✨ Features
 
 -   🔐 Secure MySQL connection
 -   🔒 Password encryption with BCrypt
@@ -25,7 +25,7 @@ connection.
 -   📱 Responsive design
 -   ⚡ Performance optimization
 
-## ⚙️Setup
+## ⚙️ Setup
 
 ### Requirements
 
@@ -43,7 +43,7 @@ connection.
 
         flutter pub get
 
-## 💾Database Configuration {#database}
+## 💾 Database Configuration {#database}
 
 ### 1. Create Database
 
