@@ -235,7 +235,7 @@ code examples and API documentation.
 
 ## 📞 Contact
 
-For questions and suggestions: <by_reclast@hotmail.com>
+For questions and suggestions: <iletisim@umiteski.com.tr>
 
 © 2025 Flutter MySQL Connect. Developed by [Ümit
 Eski](www.umiteski.com.tr). Licensed under MIT License.
